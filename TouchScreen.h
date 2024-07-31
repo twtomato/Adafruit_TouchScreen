@@ -9,10 +9,14 @@
 
 // ESP32 specific 
 #define ESP32_WIFI_TOUCH // uncomment to use parallel MCU Friend LCD touchscreen with ESP32 UNO Wifi
-#ifdef ESP32 
-#define ADC_MAX 4095  // maximum value for ESP32 ADC (default 11db, 12 bits)
-#define aXM 35  // analog input pin connected to LCD_RS 
-#define aYP 39  // analog input pin connected to LCD_WR
+#ifdef CONFIG_IDF_TARGET_ESP32S3  // for ESP32S3 Uno
+	#define ADC_MAX 4095  // maximum value for ESP32 ADC (default 11db, 12 bits)
+	#define aXM 7	// analog input pin connected to LCD_RS 
+	#define aYP 1	// analog input pin connected to LCD_WR	
+#elif defined(ESP32)	
+	#define ADC_MAX 4095  // maximum value for ESP32 ADC (default 11db, 12 bits)
+	#define aXM 35  // analog input pin connected to LCD_RS 
+	#define aYP 39  // analog input pin connected to LCD_WR
 #else
 #define ADC_MAX 1023  // Arduino
 #endif 
